@@ -10,7 +10,7 @@ echo -n > time.out
 for i in {10..100..10}; do
     # Measure the execution time
     printf "Measuring execution time for input%d.txt...\n" $i
-    /usr/bin/time -p ./nbody_sh1 -d 0.03 -o 0.01 -t 1.1107207345395915 < input${i}.txt > output_sphere${i}.out 2> temp.out
+    /usr/bin/time -p ./nbody_sh1 -d 0.03 -o 0.01 -t 1.1107207345395915 < input${i}.txt > output${i}.out 2> temp.out
     # Print the execution time to the output file
     printf "%d " $i >> time.out && cat temp.out | grep "user" | awk '{print $2}' >> time.out
 done
