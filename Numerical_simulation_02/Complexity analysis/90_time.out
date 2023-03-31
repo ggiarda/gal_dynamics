@@ -1,9 +1,0 @@
-Starting a Hermite integration for a 90-body system,
-  from time t = 0 with time step control parameter dt_param = 0.03  until time 1.11072 ,
-  with diagnostics output interval dt_dia = 1,
-  and snapshot output interval dt_out = 0.01.
-at time t = 0 , after 0 steps :
-  E_kin = 0 , E_pot = -0.901962 , E_tot = -0.901962
-                absolute energy error: E_tot - E_init = 0
-                relative energy error: (E_tot - E_init) / E_init = -0
-./nbody_sh1 -d 0.03 -o 0.01 -t 1.1107207345395915 < ${input_file} >   54,15s user 0,13s system 99% cpu 54,299 total
