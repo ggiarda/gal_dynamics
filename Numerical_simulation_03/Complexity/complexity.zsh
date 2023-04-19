@@ -6,16 +6,26 @@
 # Overwrite the time.out file if it already exists
 echo -n > time.out
 
-# Loop over the input files
-for (( i=1000; i<=10000; i+=1000 )); do
-    # Measure the execution time
-    printf "Measuring execution time for input%d.txt...\n" $i
-    /usr/bin/time -p ./treecode in=input${i}.txt out=output${i}.out dtime=0.01 eps=0.7 theta=0.3 tstop=3.3 dtout=0.1 > temp.out
-    # Print the execution time to the output file
-    printf "%d " $i >> time.out && cat temp.out | grep "user" | awk '{print $2}' >> time.out
-done
+# define input arguments
+dtime=0.01
+eps=0.7
+theta=0.3
+tstop=3.3
+dtout=0.1
 
-# Remove the temporary file
-rm -f temp.out
+# loop over input files
+for i in {1000..10000..1000}; do
+  input="input$i.txt"
+  output="output$i.txt"
+
+  # measure execution time
+  runtime=$(TIMEFORMAT='%R'; time (./treecode in=$input out=$output dtime=$dtime eps=$eps theta=$theta tstop=$tstop dtout=$dtout) 2>&1 >/dev/null)
+
+  # print result to console
+  echo "Execution time for $input: $runtime seconds"
+
+  # write result to file
+  echo $runtime >> time.out
+done
 
 printf "Execution times written to time.out\n"
