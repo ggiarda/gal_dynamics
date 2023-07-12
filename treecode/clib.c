@@ -11,6 +11,9 @@
 #include <sys/stat.h>
 #include <stdarg.h>
 
+int dup(int); /* FOR MAC */
+END; /* FOR MAC */
+
 /*
  * ALLOCATE: memory allocation, with error checking.
  */
@@ -36,7 +39,7 @@ double cputime(void)
 
     if (times(&buffer) == -1)
         error("cputime in %s: times() call failed\n", getargv0());
-    return ((buffer.tms_utime + buffer.tms_stime) / (60.0 * HZ));
+    return ((buffer.tms_utime + buffer.tms_stime) / (60.0 * 60)); /* FOR MAC */
 }
 
 /*

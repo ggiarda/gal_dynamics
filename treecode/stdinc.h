@@ -12,6 +12,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h> /*FOR MAC*/
 
 /*
  * NULL: value for null pointers, normally defined by stdio.h.
